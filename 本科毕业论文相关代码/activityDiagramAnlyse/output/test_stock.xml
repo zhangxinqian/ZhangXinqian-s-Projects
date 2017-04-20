@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<nta>
+    <declaration>/*
+Uppaal Node Name: n0  -----  Activity Diagram Node Name: updateOrderDB
+Uppaal Node Name: n1  -----  Activity Diagram Node Name: updateOrderDB
+Uppaal Node Name: n2  -----  Activity Diagram Node Name: updateOrderDB
+Uppaal Node Name: n3  -----  Activity Diagram Node Name: settleTrade
+Uppaal Node Name: n4  -----  Activity Diagram Node Name: updateStockHolderDB
+Uppaal Node Name: n5  -----  Activity Diagram Node Name: updateStockHolderDB
+Uppaal Node Name: n6  -----  Activity Diagram Node Name: tradeLimitOrderBuy
+Uppaal Node Name: n7  -----  Activity Diagram Node Name: getNewOrder
+Uppaal Node Name: n8  -----  Activity Diagram Node Name: trade_noMatch
+Uppaal Node Name: n9  -----  Activity Diagram Node Name: displayOrderErrorInfo
+Uppaal Node Name: n10  -----  Activity Diagram Node Name: trade_partexe
+Uppaal Node Name: n11  -----  Activity Diagram Node Name: tradeMarketOrderSale
+Uppaal Node Name: n12  -----  Activity Diagram Node Name: updateStockDB
+Uppaal Node Name: n13  -----  Activity Diagram Node Name: verifyOrderForm
+Uppaal Node Name: n14  -----  Activity Diagram Node Name: trade_failure
+Uppaal Node Name: n15  -----  Activity Diagram Node Name: updateOrderHashMap
+Uppaal Node Name: n16  -----  Activity Diagram Node Name: getOrderResult
+Uppaal Node Name: n17  -----  Activity Diagram Node Name: addOrderFormList
+Uppaal Node Name: n18  -----  Activity Diagram Node Name: tradeMarketOrderBuy
+Uppaal Node Name: n19  -----  Activity Diagram Node Name: updateOrderDB
+Uppaal Node Name: n20  -----  Activity Diagram Node Name: trade_success
+Uppaal Node Name: n21  -----  Activity Diagram Node Name: updateStockDB
+Uppaal Node Name: n22  -----  Activity Diagram Node Name: endOrderProcess
+Uppaal Node Name: n23  -----  Activity Diagram Node Name: tradeLimitOrderSale
+Uppaal Node Name: n24  -----  Activity Diagram Node Name: d5
+Uppaal Node Name: n25  -----  Activity Diagram Node Name: s8
+Uppaal Node Name: n26  -----  Activity Diagram Node Name: m1
+Uppaal Node Name: n27  -----  Activity Diagram Node Name: s4
+Uppaal Node Name: n28  -----  Activity Diagram Node Name: s3
+Uppaal Node Name: n29  -----  Activity Diagram Node Name: d4
+Uppaal Node Name: n30  -----  Activity Diagram Node Name: d3
+Uppaal Node Name: n31  -----  Activity Diagram Node Name: s5
+Uppaal Node Name: n32  -----  Activity Diagram Node Name: s6
+Uppaal Node Name: n33  -----  Activity Diagram Node Name: d2
+Uppaal Node Name: n34  -----  Activity Diagram Node Name: m2
+Uppaal Node Name: n35  -----  Activity Diagram Node Name: s1
+Uppaal Node Name: n36  -----  Activity Diagram Node Name: s2
+Uppaal Node Name: n37  -----  Activity Diagram Node Name: end
+Uppaal Node Name: n38  -----  Activity Diagram Node Name: s7
+Uppaal Node Name: n39  -----  Activity Diagram Node Name: d1
+Uppaal Node Name: n40  -----  Activity Diagram Node Name: init
+Uppaal Node Name: n41  -----  Activity Diagram Node Name: d6
+*/
+
+// Place global declarations here.
+//configuration
+const int NODE_NUM = 42;
+const int MAX_OUT = 4;
+typedef int[0, NODE_NUM-1] id_t;
+typedef int[0, MAX_OUT] out_t;
+typedef int[-1, NODE_NUM*NODE_NUM-1] message_t;
+urgent broadcast chan msg[NODE_NUM*NODE_NUM];
+int visit[NODE_NUM] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int send_count[NODE_NUM] =    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 4, 2, 2, 4, 1, 2, 1, 2, 1, 0, 2, 2, 1, 4};
+int receive_count[NODE_NUM] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 4, 4, 1, 1, 1, 1, 4, 1, 2, 1, 2, 3, 1, 1, 0, 1};
+double mean_table[NODE_NUM] =      {1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.0, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+double deviation_table[NODE_NUM] = {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+
+int encode_msg(id_t send_id, id_t receive_id)
+{
+    return NODE_NUM * send_id + receive_id;
+}
+
+//UML activity diagram structure
+message_t msg_graph[NODE_NUM][MAX_OUT] = {
+    {encode_msg(0, 25), -1, -1, -1},
+    {encode_msg(1, 36), -1, -1, -1},
+    {encode_msg(2, 32), -1, -1, -1},
+    {encode_msg(3, 27), -1, -1, -1},
+    {encode_msg(4, 3), -1, -1, -1},
+    {encode_msg(5, 32), -1, -1, -1},
+    {encode_msg(6, 26), -1, -1, -1},
+    {encode_msg(7, 33), -1, -1, -1},
+    {encode_msg(8, 25), -1, -1, -1},
+    {encode_msg(9, 37), -1, -1, -1},
+    {encode_msg(10, 32), -1, -1, -1},
+    {encode_msg(11, 26), -1, -1, -1},
+    {encode_msg(12, 32), -1, -1, -1},
+    {encode_msg(13, 39), -1, -1, -1},
+    {encode_msg(14, 36), -1, -1, -1},
+    {encode_msg(15, 37), -1, -1, -1},
+    {encode_msg(16, 41), -1, -1, -1},
+    {encode_msg(17, 7), -1, -1, -1},
+    {encode_msg(18, 26), -1, -1, -1},
+    {encode_msg(19, 27), -1, -1, -1},
+    {encode_msg(20, 27), -1, -1, -1},
+    {encode_msg(21, 27), -1, -1, -1},
+    {encode_msg(22, 37), -1, -1, -1},
+    {encode_msg(23, 26), -1, -1, -1},
+    {encode_msg(24, 23), encode_msg(24, 6), -1, -1},
+    {encode_msg(25, 15), -1, -1, -1},
+    {encode_msg(26, 16), -1, -1, -1},
+    {encode_msg(27, 22), -1, -1, -1},
+    {encode_msg(28, 4), encode_msg(28, 21), encode_msg(28, 19), encode_msg(28, 20)},
+    {encode_msg(29, 24), encode_msg(29, 34), -1, -1},
+    {encode_msg(30, 18), encode_msg(30, 11), -1, -1},
+    {encode_msg(31, 2), encode_msg(31, 5), encode_msg(31, 12), encode_msg(31, 10)},
+    {encode_msg(32, 15), -1, -1, -1},
+    {encode_msg(33, 29), encode_msg(33, 30), -1, -1},
+    {encode_msg(34, 38), -1, -1, -1},
+    {encode_msg(35, 1), encode_msg(35, 14), -1, -1},
+    {encode_msg(36, 22), -1, -1, -1},
+    {-1, -1, -1, -1},
+    {encode_msg(38, 0), encode_msg(38, 8), -1, -1},
+    {encode_msg(39, 9), encode_msg(39, 17), -1, -1},
+    {encode_msg(40, 13), -1, -1, -1},
+    {encode_msg(41, 28), encode_msg(41, 31), encode_msg(41, 34), encode_msg(41, 35)}
+};
+//common functions
+double normal_distribution(double mean, double deviation)
+{
+	double x1, y1, z1;
+	x1 = random(1.0);
+	y1 = random(1.0);
+	z1 = ((deviation * pow(((-2.0) * ln(x1)), 0.5) * cos(2.0 * 3.14 * y1)) + mean);
+	if(z1 &lt; 0)
+	{
+		z1 = 0;
+	}
+	return z1;
+}
+
+double running_time(id_t nid)
+{
+	return normal_distribution(mean_table[nid], deviation_table[nid]);
+}
+
+//variables declaration:
+
+int[0, 1] order_type;//by market(0) or limit(1) price
+int[0, 1] operation_type;//buy(0) or sell(1)
+double market_price;
+double limit_price;
+double order_amount;
+double avail_amount;
+int[0, 3] trade_result; //0 - failure; 1 - success; 2 - partial; 3 - no match.
+
+
+
+//init function:
+void init_func()
+{
+
+double r = random(1.0);
+if (r &lt; 0.2) order_type = 0; //order by market price
+else order_type = 1; //order by limit price
+    
+market_price = normal_distribution(5.0, 0.2);
+limit_price = normal_distribution(5.0, 0.2);
+
+r = random(1.0);
+if (r &lt; 0.5) operation_type = 0;//buy
+else operation_type = 1; //sell
+    
+order_amount = normal_distribution(100.0, 20.0);
+avail_amount = normal_distribution(100.0, 30.0);
+}
+
+//Activities functions:
+//Activity tradeLimitOrderBuy function:
+void activity_6_func()
+{
+
+    if (order_amount &lt;= 0 || avail_amount &lt;= 0 || market_price &lt;= 0 || limit_price &lt;= 0)
+    {
+        trade_result = 0;//failure
+        return;
+    }
+    if (avail_amount &gt;= order_amount &amp;&amp; limit_price &lt;= market_price)//success
+    {
+        trade_result = 1;
+        avail_amount = avail_amount - order_amount; 
+    }
+    else if (avail_amount &lt; order_amount &amp;&amp; limit_price &lt;= market_price)//partly execution
+    {
+        trade_result = 2;
+        avail_amount = 0;
+    }
+    else trade_result = 3;//no match
+}
+
+//Activity tradeMarketOrderSale function:
+void activity_11_func()
+{
+
+    if (order_amount &lt;= 0 || avail_amount &lt;= 0 || market_price &lt;= 0)
+    {
+        trade_result = 0;
+        return;
+    }
+    if (avail_amount &gt;= order_amount)
+    {
+        trade_result = 1;
+        avail_amount = avail_amount - order_amount; 
+    }
+    else
+    {
+        trade_result = 2;
+        avail_amount = 0;
+    }
+}
+
+//Activity tradeMarketOrderBuy function:
+void activity_18_func()
+{
+
+    if (order_amount &lt;= 0 || avail_amount &lt;= 0 || market_price &lt;= 0)
+    {
+        trade_result = 0;
+        return;
+    }
+    if (avail_amount &gt;= order_amount)
+    {
+        trade_result = 1;
+        avail_amount = avail_amount - order_amount; 
+    }
+    else
+    {
+        trade_result = 2;
+        avail_amount = 0;
+    }
+}
+
+//Activity tradeLimitOrderSale function:
+void activity_23_func()
+{
+
+    if (order_amount &lt;= 0 || avail_amount &lt;= 0 || market_price &lt;= 0 || limit_price &lt;= 0)//failure
+    {
+        trade_result = 0;
+        return;
+    }
+    if (avail_amount &gt;= order_amount &amp;&amp; limit_price &lt;= market_price)//success
+    {
+        trade_result = 1;
+        avail_amount = avail_amount - order_amount; 
+    }
+    else if (avail_amount &lt; order_amount &amp;&amp; limit_price &lt;= market_price)//partly execution
+    {
+        trade_result = 2;
+        avail_amount = 0;
+    }
+    else trade_result = 3;//no match
+}
+
+void do_func(id_t nid)
+{
+    if (nid == 6) activity_6_func();
+    else if (nid == 11) activity_11_func();
+    else if (nid == 18) activity_18_func();
+    else if (nid == 23) activity_23_func();
+    else return;
+}
+
+//Branches functions:
+//Branch d5 function:
+message_t branch_24_func(id_t nid)
+{
+
+    if (operation_type == 0) return encode_msg(24, 6);
+    else return encode_msg(24, 23);
+}
+
+//Branch d4 function:
+message_t branch_29_func(id_t nid)
+{
+
+    if (limit_price &lt; market_price * 0.9 || limit_price &gt; market_price * 1.1) 
+    {
+        trade_result = 3;
+        return encode_msg(29, 34);
+    }
+    else return encode_msg(29, 24);
+}
+
+//Branch d3 function:
+message_t branch_30_func(id_t nid)
+{
+
+    if (operation_type == 0) return encode_msg(30, 18);
+    else return encode_msg(30, 11);
+}
+
+//Branch d2 function:
+message_t branch_33_func(id_t nid)
+{
+
+    if (order_type == 0) return encode_msg(33, 30);
+    else return encode_msg(33, 29);
+}
+
+//Branch d1 function:
+message_t branch_39_func(id_t nid)
+{
+
+    double r = random(1.0);
+    if (r &lt; 0.05) return encode_msg(39, 9);
+    else return encode_msg(39, 17);
+}
+
+message_t select_func(id_t nid, out_t send_index)
+{
+    message_t res = -1;
+    if (nid == 24) res = branch_24_func(nid);
+    else if (nid == 29) res = branch_29_func(nid);
+    else if (nid == 30) res = branch_30_func(nid);
+    else if (nid == 33) res = branch_33_func(nid);
+    else if (nid == 39) res = branch_39_func(nid);
+    else res = msg_graph[nid][send_index];
+    return res;
+}
+
+</declaration>    <template>        <name x="5" y="5">Node</name>
+        <parameter>const id_t &amp;nid</parameter>
+        <declaration>clock clk;
+double duration;
+out_t send_index;
+message_t send_msg;
+out_t predecessor_count;
+out_t successor_count;
+</declaration>        <location id="id0" x="340" y="-382">            <name x="366" y="-390">Done</name>
+        </location>
+        <location id="id1" x="162" y="-118">
+            <name x="136" y="-101">Sending</name>
+            <urgent/>
+        </location>
+        <location id="id2" x="162" y="-382">
+            <urgent/>
+        </location>
+        <location id="id3" x="-59" y="-382">
+            <name x="-85" y="-416">Running</name>
+            <label kind="invariant" x="-102" y="-356">clk &lt;= duration</label>
+        </location>
+        <location id="id4" x="-357" y="-118">
+            <name x="-391" y="-101">Receiving</name>
+        </location>
+        <location id="id5" x="-357" y="-382">
+            <urgent/>
+        </location>
+        <location id="id6" x="-688" y="-382">
+            <name x="-697" y="-416">Init</name>
+            <committed/>
+        </location>
+        <init ref="id6"/>
+        <transition>
+            <source ref="id1"/>
+            <target ref="id2"/>
+            <label kind="synchronisation" x="213" y="-314">msg[send_msg]!</label>
+            <label kind="assignment" x="196" y="-186">successor_count --,
+send_index ++</label>
+            <nail x="221" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id0"/>
+            <target ref="id5"/>
+            <label kind="select" x="-280" y="-535">e : message_t</label>
+            <label kind="guard" x="-280" y="-518">e % NODE_NUM == nid</label>
+            <label kind="synchronisation" x="-280" y="-501">msg[e]?</label>
+            <label kind="assignment" x="-280" y="-467">predecessor_count = receive_count[nid] - 1,
+successor_count = send_count[nid]</label>
+            <nail x="340" y="-475"/>
+            <nail x="-357" y="-475"/>
+        </transition>
+        <transition>
+            <source ref="id4"/>
+            <target ref="id5"/>
+            <label kind="select" x="-331" y="-263">e : message_t</label>
+            <label kind="guard" x="-331" y="-246">e % NODE_NUM == nid</label>
+            <label kind="synchronisation" x="-331" y="-229">msg[e]?</label>
+            <label kind="assignment" x="-331" y="-212">predecessor_count --</label>
+            <nail x="-297" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id2"/>
+            <target ref="id0"/>
+            <label kind="guard" x="179" y="-416">successor_count == 0</label>
+            <label kind="assignment" x="221" y="-382">visit[nid] ++</label>
+        </transition>
+        <transition>
+            <source ref="id2"/>
+            <target ref="id1"/>
+            <label kind="guard" x="26" y="-254">successor_count &gt; 0</label>
+            <label kind="assignment" x="-76" y="-229">send_msg = select_func(nid, send_index)</label>
+            <nail x="102" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id3"/>
+            <target ref="id2"/>
+            <label kind="guard" x="17" y="-407">clk &gt;= duration</label>
+            <label kind="assignment" x="17" y="-382">send_index = 0,
+do_func(nid)</label>
+        </transition>
+        <transition>
+            <source ref="id5"/>
+            <target ref="id4"/>
+            <label kind="guard" x="-493" y="-297">predecessor_count &gt; 0</label>
+            <nail x="-416" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id5"/>
+            <target ref="id3"/>
+            <label kind="guard" x="-306" y="-373">predecessor_count == 0</label>
+            <label kind="assignment" x="-306" y="-348">duration = running_time(nid),
+clk = 0</label>
+        </transition>
+        <transition>
+            <source ref="id6"/>
+            <target ref="id5"/>
+            <label kind="assignment" x="-663" y="-373">predecessor_count = receive_count[nid],
+successor_count = send_count[nid]</label>
+        </transition>
+    </template>
+    <system>// Place template instantiations here.
+n0 = Node(0);
+n1 = Node(1);
+n2 = Node(2);
+n3 = Node(3);
+n4 = Node(4);
+n5 = Node(5);
+n6 = Node(6);
+n7 = Node(7);
+n8 = Node(8);
+n9 = Node(9);
+n10 = Node(10);
+n11 = Node(11);
+n12 = Node(12);
+n13 = Node(13);
+n14 = Node(14);
+n15 = Node(15);
+n16 = Node(16);
+n17 = Node(17);
+n18 = Node(18);
+n19 = Node(19);
+n20 = Node(20);
+n21 = Node(21);
+n22 = Node(22);
+n23 = Node(23);
+n24 = Node(24);
+n25 = Node(25);
+n26 = Node(26);
+n27 = Node(27);
+n28 = Node(28);
+n29 = Node(29);
+n30 = Node(30);
+n31 = Node(31);
+n32 = Node(32);
+n33 = Node(33);
+n34 = Node(34);
+n35 = Node(35);
+n36 = Node(36);
+n37 = Node(37);
+n38 = Node(38);
+n39 = Node(39);
+n40 = Node(40);
+n41 = Node(41);
+
+// List one or more processes to be composed into a system.
+system n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16, n17, n18, n19, n20, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32, n33, n34, n35, n36, n37, n38, n39, n40, n41;
+</system></nta>

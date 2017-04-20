@@ -1,0 +1,28 @@
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Debug\QQllkHack.exe.manifest
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Debug\QQllkHack.application
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Debug\QQllkHack.exe
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Debug\QQllkHack.pdb
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.QQllkHack.resources
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.Properties.Resources.resources
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.exe.manifest
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.application
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.exe
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.pdb
+C:\Users\123\Desktop\QQllkHack\QQllkHack\bin\Debug\QQllkHack.exe.manifest
+C:\Users\123\Desktop\QQllkHack\QQllkHack\bin\Debug\QQllkHack.application
+C:\Users\123\Desktop\QQllkHack\QQllkHack\bin\Debug\QQllkHack.exe
+C:\Users\123\Desktop\QQllkHack\QQllkHack\bin\Debug\QQllkHack.pdb
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.QQllkHack.resources
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.Properties.Resources.resources
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.exe.manifest
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.application
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.exe
+C:\Users\123\Desktop\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.pdb
+C:\Users\123\Desktop\near\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.exe
+C:\Users\123\Desktop\near\QQllkHack\QQllkHack\obj\x86\Debug\QQllkHack.pdb

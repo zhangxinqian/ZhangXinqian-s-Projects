@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.android.securityguard">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- 手机杀毒 -->
+    <!-- 缓存清理 -->
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <!-- 进程管理 -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".home.HomeActivity" />
+
+        <!-- 手机防盗 -->
+        <activity
+            android:name=".safe.LostFindActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".safe.Setup1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".safe.Setup2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".safe.Setup3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".safe.ContactSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".safe.Setup4Activity"
+            android:screenOrientation="portrait" />
+        <!-- 通讯卫士 -->
+        <activity
+            android:name=".black.SecurityPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".black.AddBlackNumberActivity"
+            android:screenOrientation="portrait" />
+        <!-- 软件管家 -->
+        <activity
+            android:name=".app.AppManagerActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 病毒查杀 -->
+        <activity
+            android:name=".virus.VirusScanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".virus.VirusScanSpeedActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".cache.CacheScanActivity" />
+        <activity android:name=".cache.CacheCleanActivity" />
+        <activity android:name=".process.ProcessManagerActivity" />
+        <activity android:name=".process.ProcessManagerSettingActivity" />
+        <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".traffic.OperatorSetActivity" />
+        <activity android:name=".traffic.TrafficMonitoringActivity" />
+
+        <!-- 高级工具 -->
+        <activity
+            android:name=".advance.AdvancedToolsActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".advance.NumBelongtoActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".advance.SMSBackupActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".advance.SMSRestoreActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".advance.AppLockActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".advance.EnterPasswordActivity"></activity>
+
+        <receiver android:name=".safe.receiver.BootCompleteReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- 2. 配置设备超级管理员广播接收者 -->
+        <receiver
+            android:name=".safe.receiver.MyDeviceAdminReceiver"
+            android:description="@string/sample_device_admin_description"
+            android:label="@string/sample_device_admin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <!-- 拦截黑名单信息 -->
+        <receiver android:name=".black.receiver.InterceptSmsReceiver">
+            <intent-filter android:priority="214783647">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <!-- 拦截黑名单电话 -->
+        <receiver android:name=".black.receiver.InterceptCallReceiver">
+            <intent-filter android:priority="214783647">
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".safe.service.GPSLocationService"
+            android:persistent="true" />
+
+        <!-- 锁屏自动清理进程 -->
+        <service
+            android:name=".process.service.AutoKillProcessService"
+            android:persistent="true" />
+
+        <!--  -->
+        <service
+            android:name=".traffic.service.TrafficMonitoringService"
+            android:persistent="true" />
+        <service android:name=".advance.service.AppLockService" />
+
+        <receiver android:name=".traffic.service.BootCompleteReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+
+    </application>
+
+</manifest>

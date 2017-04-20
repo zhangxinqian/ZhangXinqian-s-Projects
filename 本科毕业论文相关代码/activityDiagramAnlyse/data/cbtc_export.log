@@ -1,0 +1,34 @@
+Exporting package to 'C:\Users\ZhangXinqian\Desktop\model\cbtc.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Case_CBTC
+Element:0: GenTrainControlInfo
+Element:1: TrainPostioning
+Element:2: End
+Element:3: CalStaticVelocity
+Element:4: CalDynamicVelCurve
+Element:5: Note
+Element:6: ComparePosVel
+Element:7: s1
+Element:8: ReceivingProcess
+Element:9: $help://domain_model_pattern.htm
+Element:10: s2
+Element:11: Init
+Element:12: s4
+Element:13: GenTrainReport
+Element:14: SelectStrictStaticVelCurve
+Element:15: ControlProcess
+Element:16: SendingProcess
+Element:17: s3
+Diagram: Activity_CBTC
+Adding State-Tables
+Formatting output XML...please wait
+XMI Document Export Complete!

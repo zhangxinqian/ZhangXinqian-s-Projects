@@ -1,0 +1,13 @@
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Release\QQllkHack.exe.manifest
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Release\QQllkHack.application
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Release\QQllkHack.exe
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\bin\Release\QQllkHack.pdb
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\QQllkHack.QQllkHack.resources
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\QQllkHack.Properties.Resources.resources
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\QQllkHack.exe.manifest
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\QQllkHack.application
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\QQllkHack.exe
+C:\Documents and Settings\Administrator\桌面\QQllkHack\QQllkHack\obj\x86\Release\QQllkHack.pdb

@@ -1,0 +1,162 @@
+<resources>
+    <string name="app_name">SecurityGuard</string>
+    <string name="title_activity_phone_security">PhoneSecurityActivity</string>
+    <string name="sample_device_admin_description">我是设备的超级管理员。开启我之后就可以清除数据，远程锁屏。</string>
+    <string name="sample_device_admin">手机卫士管理器</string>
+
+    <!-- HomeActivity -->
+    <string name="request_admin_permission">获取超级管理员权限，用于远程锁屏和清除数据</string>
+
+    <!-- LostFindActivity -->
+    <string name="lostfind_safe">手机防盗</string>
+    <string name="lostfind_safe_phone">安全号码</string>
+    <string name="lostfind_switch_on">防盗保护是否开启</string>
+    <string name="lostfind_resetting">重新进入设置向导</string>
+    <string name="lostfind_message_instruction">短信指令功能</string>
+    <string name="lostfind_play_alarm_music_inst">#*alarm*#</string>
+    <string name="lostfind_play_alarm_music">播放报警音乐</string>
+    <string name="lostfind_gps_track_inst">#*locate*#</string>
+    <string name="lostfind_gps_track">GPS追踪</string>
+    <string name="lostfind_remote_lock_screen_inst">#*lockScreen*#</string>
+    <string name="lostfind_remote_lock_screen">远程锁屏</string>
+    <string name="lostfind_remote_delete_data_inst">#*wipedata*#</string>
+    <string name="lostfind_remote_delete_data">远程删除数据</string>WS
+
+    <!-- BaseSetupActivity -->
+    <string name="setup_invalid_action">无效动作，移动太慢</string>
+
+    <!-- Setup1Activity -->
+    <string name="setup_first_page">当前页面已经是第一页</string>
+
+    <string name="setup_safe_guide">手机防盗向导</string>
+    <string name="setup_sim_change_alarm">SIM卡变更报警</string>
+    <string name="setup_gps_track">GPS追踪</string>
+    <string name="setup_remote_lock_screen">远程锁屏</string>
+    <string name="setup_remote_delete_data">远程删除数据</string>
+
+    <!-- Setup2Activity -->
+    <string name="setup_sim_not_bind">您还没有绑定SIM卡!</string>
+    <string name="setup_sim_bind_success">SIM卡绑定成功!</string>
+    <string name="setup_sim_binded">SIM卡已经绑定!</string>
+
+    <string name="setup_sim_bind">SIM卡绑定</string>
+    <string name="setup_sim_bind_info">"    绑定SIM卡后，当再次重启手机时，若SIM卡信息发生变化，手机卫士会自动发送报警短信给安全号码！"</string>
+
+    <!-- App -->
+    <!--<string name="setup_sim_unchanged">SIM卡未发生变化，还是您的手机</string>-->
+    <!--<string name="setup_sim_changed">SIM卡变化了</string>-->
+    <!--<string name="setup_sim_send_message">"您的亲友手机的SIM卡已经被更换! "</string>-->
+
+    <!-- Setup3Activity -->
+    <string name="setup_enter_security_phoneno">" 请输入安全号码"</string>
+    <string name="setup_select_security_contact">选择安全联系人</string>
+
+    <!-- ContactSelectActivity -->
+    <string name="setup_select_contact">选择联系人</string>
+
+    <!-- Setup4Activity -->
+    <string name="setup_safe_switched_on">防盗保护已经开启</string>
+    <string name="setup_safe_switched_off">防盗保护没有开启</string>
+    <string name="setup_safe_setting_complete">"恭喜! 设置完成"</string>
+
+    <!-- SecurityPhoneActivity -->
+    <string name="security_title_text">通讯卫士</string>
+    <string name="security_no_added_black_item">您还没有添加黑名单</string>
+    <string name="security_no_more_data">没有更多的数据了</string>
+
+    <!-- BlackContactAdapter -->
+    <string name="security_delete_failed">删除失败!</string>
+
+    <!-- AddBlackNumberActivity -->
+    <string name="security_add_phoneno">请输入要添加的号码</string>
+    <string name="security_add_name">请输入名称</string>
+    <string name="security_mode_intercept_phone">电话拦截</string>
+    <string name="security_mode_intercept_sms">短信拦截</string>
+    <string name="security_phone_name_blank">电话号码和名称不能为空!</string>
+    <string name="security_must_select_mode">请选择拦截模式</string>
+    <string name="security_phone_added">该号码已经被添加至黑名单中</string>
+    <string name="security_add_to_blacklist">添加至黑名单</string>
+
+    <!-- AppManagerActivity -->
+    <string name="app_manager_title">软件管家</string>
+    <string name="app_manager_start">启动</string>
+    <string name="app_manager_uninstall">卸载</string>
+    <string name="app_manager_share">分享</string>
+    <string name="app_manager_setting">设置</string>
+
+    <!-- EngineUtils -->
+    <string name="app_manager_advise_msg">"推荐您使用一款软件，名称叫: "</string>
+    <string name="app_manager_advise_app_downsite">", 下载路径: https://play.google.com/store/apps/details?id="</string>
+    <string name="app_manager_app_no_launch">该应用没有启动界面</string>
+    <string name="app_manager_app_uninstall_need_root">卸载系统应用，必须要root权限</string>
+    <string name="app_manager_app_uninstall_permission_grant">请授权黑马小护卫root权限</string>
+    <string name="app_manager_app_uninstall_no_permission">您没有权限卸载此应用</string>
+
+    <!-- VirusScanActivity -->
+    <!--<string name="virus_not_yet_scan">您还没有查杀病毒!</string>-->
+    <string name="virus_scan">病毒查杀</string>
+    <string name="virus_all_scan">全盘扫描</string>
+    <string name="virus_all_scan_and_safe">全盘扫描手机，杀毒更彻底</string>
+
+    <!-- VirusScanSpeedActivity -->
+    <string name="virus_scan_title_process">病毒查杀进度</string>
+    <string name="virus_scan_begin">初始化杀毒引擎中...</string>
+    <string name="virus_scan_complete">扫描完成!</string>
+
+    <!--CacheScanActivity-->
+    <string name="cache_scan">"缓存扫描"</string>
+    <string name="cacheclean_phone_clear">"您的手机洁净如新!"</string>
+
+    <!--CacheCleanActivity-->
+    <string name="cacheclean_clean">"缓存清理"</string>
+    <string name="cacheclean_already_cleaned_cache">"已清理垃圾文件: "</string>
+    <string name="cacheclean_clean_finish">"清理完毕"</string>
+
+    <!-- -->
+    <string name="process_management">"进程管理"</string>
+    <!-- OperatorSetActivity -->
+    <string name="traffic_operator_selection">运营商选择</string>
+    <string name="traffic_operator_info_setting">"运营商信息设置"</string>
+    <string name="traffic_operatorset_string">"    仅一次简单设置，以后即可便捷矫正流量，时刻保持与运营商保持精准同步。"</string>
+
+    <!-- TrafficMonitoringActivity -->
+    <string name="traffic_traffic_monitoring">"流量监控"</string>
+    <string name="traffic_not_set_operator">"您还没有设置运营商信息"</string>
+    <string name="traffic_traffic_enough">"本月流量充足,请放心使用! "</string>
+    <string name="traffic_traffic_today_used">"今天已用: "</string>
+    <string name="traffic_traffic_month_used">"本月已用: "</string>
+    <string name="traffic_traffic_month">"本月流量: "</string>
+    <string name="traffic_traffic_to_finish">"您的套餐流量即将用完! "</string>
+
+    <!-- AdvancedToolsActivity -->
+    <string name="advanced_tools_title">高级工具</string>
+    <string name="advanced_number_belongto">号码归属地查询</string>
+    <string name="advanced_sms_backup">短信备份</string>
+    <string name="advanced_sms_restore">短信还原</string>
+    <string name="advanced_app_lock">程序锁</string>
+
+    <!--NumBelongtoActivity-->
+    <string name="advanced_number_belongto_title">号码归属地查询</string>
+    <string name="advanced_number_belongto_search">请输入需要查询的号码</string>
+    <string name="advanced_number_belongto_search_enter">请输入要查询的号码</string>
+
+    <!-- SMSBackupActivity -->
+    <string name="advanced_one_key_backup">一键备份</string>
+    <string name="advanced_backup_cancel">取消备份</string>
+    <string name="advanced_backup_success">备份成功</string>
+    <string name="advanced_no_sms">您还没有短信!</string>
+
+    <!-- SMSRestoreActivity -->
+    <string name="advanced_one_key_restore">一键还原</string>
+    <string name="advanced_restore_cancel">取消还原</string>
+    <string name="advanced_restore_success">还原成功</string>
+
+    <!-- AppLockActivity -->
+    <string name="advanced_not_yet_locked">未加锁</string>
+    <string name="advanced_locked">已加锁</string>
+
+    <!-- EnterPasswordActivity -->
+    <string name="advanced_safe_password">请输入防盗密码</string>
+    <string name="advanced_enter_password">请输入密码</string>
+    <string name="advanced_wrong_password">密码不正确!</string>
+</resources>

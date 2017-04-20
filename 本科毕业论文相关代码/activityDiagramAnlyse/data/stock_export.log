@@ -1,0 +1,60 @@
+Exporting package to 'C:\Users\ZhangXinqian\Desktop\model\stock.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Case_Stock
+Element:0: d5
+Element:1: updateOrderDB
+Element:2: s8
+Element:3: m1
+Element:4: s4
+Element:5: updateOrderDB
+Element:6: updateOrderDB
+Element:7: s3
+Element:8: d4
+Element:9: Note
+Element:10: settleTrade
+Element:11: d3
+Element:12: s5
+Element:13: s6
+Element:14: updateStockHolderDB
+Element:15: updateStockHolderDB
+Element:16: d2
+Element:17: tradeLimitOrderBuy
+Element:18: m2
+Element:19: getNewOrder
+Element:20: trade_noMatch
+Element:21: displayOrderErrorInfo
+Element:22: trade_partexe
+Element:23: s1
+Element:24: s2
+Element:25: tradeMarketOrderSale
+Element:26: end
+Element:27: s7
+Element:28: updateStockDB
+Element:29: d1
+Element:30: verifyOrderForm
+Element:31: trade_failure
+Element:32: updateOrderHashMap
+Element:33: getOrderResult
+Element:34: addOrderFormList
+Element:35: init
+Element:36: $help://domain_model_pattern.htm
+Element:37: tradeMarketOrderBuy
+Element:38: updateOrderDB
+Element:39: d6
+Element:40: trade_success
+Element:41: updateStockDB
+Element:42: endOrderProcess
+Element:43: tradeLimitOrderSale
+Diagram: Activity_Stock
+Adding State-Tables
+Formatting output XML...please wait
+XMI Document Export Complete!

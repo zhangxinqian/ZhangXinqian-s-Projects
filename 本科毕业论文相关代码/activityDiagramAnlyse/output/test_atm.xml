@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<nta>
+    <declaration>/*
+Uppaal Node Name: n0  -----  Activity Diagram Node Name: Verify access code
+Uppaal Node Name: n1  -----  Activity Diagram Node Name: Ask for amount
+Uppaal Node Name: n2  -----  Activity Diagram Node Name: Prepare to print receipt
+Uppaal Node Name: n3  -----  Activity Diagram Node Name: Handle incorrect access code
+Uppaal Node Name: n4  -----  Activity Diagram Node Name: Generate receipt content
+Uppaal Node Name: n5  -----  Activity Diagram Node Name: Finish transaction and print receipt
+Uppaal Node Name: n6  -----  Activity Diagram Node Name: Dispense cash
+Uppaal Node Name: n7  -----  Activity Diagram Node Name: d1
+Uppaal Node Name: n8  -----  Activity Diagram Node Name: End
+Uppaal Node Name: n9  -----  Activity Diagram Node Name: d2
+Uppaal Node Name: n10  -----  Activity Diagram Node Name: Start
+Uppaal Node Name: n11  -----  Activity Diagram Node Name: syn_2
+Uppaal Node Name: n12  -----  Activity Diagram Node Name: syn_1
+Uppaal Node Name: n13  -----  Activity Diagram Node Name: d3
+*/
+
+// Place global declarations here.
+//configuration
+const int NODE_NUM = 14;
+const int MAX_OUT = 2;
+typedef int[0, NODE_NUM-1] id_t;
+typedef int[0, MAX_OUT] out_t;
+typedef int[-1, NODE_NUM*NODE_NUM-1] message_t;
+urgent broadcast chan msg[NODE_NUM*NODE_NUM];
+int visit[NODE_NUM] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int send_count[NODE_NUM] =    {1, 1, 1, 1, 1, 1, 1, 2, 0, 2, 1, 1, 2, 2};
+int receive_count[NODE_NUM] = {1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 0, 2, 1, 1};
+double mean_table[NODE_NUM] =      {10.0, 5.0, 1.0, 12.0, 1.0, 4.0, 6.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+double deviation_table[NODE_NUM] = {1.0, 2.0, 0.5, 1.0, 0.8, 1.5, 1.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+
+int encode_msg(id_t send_id, id_t receive_id)
+{
+    return NODE_NUM * send_id + receive_id;
+}
+
+//UML activity diagram structure
+message_t msg_graph[NODE_NUM][MAX_OUT] = {
+    {encode_msg(0, 7), -1},
+    {encode_msg(1, 12), -1},
+    {encode_msg(2, 11), -1},
+    {encode_msg(3, 9), -1},
+    {encode_msg(4, 11), -1},
+    {encode_msg(5, 8), -1},
+    {encode_msg(6, 4), -1},
+    {encode_msg(7, 1), encode_msg(7, 3)},
+    {-1, -1},
+    {encode_msg(9, 1), encode_msg(9, 8)},
+    {encode_msg(10, 0), -1},
+    {encode_msg(11, 5), -1},
+    {encode_msg(12, 2), encode_msg(12, 13)},
+    {encode_msg(13, 4), encode_msg(13, 6)}
+};
+//common functions
+double normal_distribution(double mean, double deviation)
+{
+	double x1, y1, z1;
+	x1 = random(1.0);
+	y1 = random(1.0);
+	z1 = ((deviation * pow(((-2.0) * ln(x1)), 0.5) * cos(2.0 * 3.14 * y1)) + mean);
+	if(z1 &lt; 0)
+	{
+		z1 = 0;
+	}
+	return z1;
+}
+
+double running_time(id_t nid)
+{
+	return normal_distribution(mean_table[nid], deviation_table[nid]);
+}
+
+//variables declaration:
+
+double amount_available = 10000.0; //hundred yuan
+double amount_input = 0.0;
+double access_code = 0.0;
+double access_code_input = 0.0;
+double access_code_resolve = 0.0;
+double abs(double a)
+{
+    if (a &lt; 0) return -a;
+    else return a;
+}
+
+//init function:
+//Activities functions:
+//Activity Verify access code function:
+void activity_0_func()
+{
+
+    double r = random(1.0);
+    access_code = r * 10;
+    r = random(1.0);
+    access_code_input = r * 10;
+}
+
+//Activity Ask for amount function:
+void activity_1_func()
+{
+
+    double r = random(1.0);
+    amount_input = r * 10 + 1;
+}
+
+//Activity Handle incorrect access code function:
+void activity_3_func()
+{
+
+    double r = random(1.0);
+    access_code_resolve = r * 10;
+}
+
+//Activity Dispense cash function:
+void activity_6_func()
+{
+
+    amount_available = amount_available - amount_input;
+}
+
+void do_func(id_t nid)
+{
+    if (nid == 0) activity_0_func();
+    else if (nid == 1) activity_1_func();
+    else if (nid == 3) activity_3_func();
+    else if (nid == 6) activity_6_func();
+    else return;
+}
+
+//Branches functions:
+//Branch d1 function:
+message_t branch_7_func(id_t nid)
+{
+
+    if (abs(access_code - access_code_input) &lt; 8.0)
+        return encode_msg(7, 1);
+    else return encode_msg(7, 3);
+}
+
+//Branch d2 function:
+message_t branch_9_func(id_t nid)
+{
+
+    if (abs(access_code - access_code_resolve) &lt; 6.0)
+        return encode_msg(9, 1);
+    else return encode_msg(9, 8);
+}
+
+//Branch d3 function:
+message_t branch_13_func(id_t nid)
+{
+
+    if (amount_input &lt;= amount_available)
+        return encode_msg(13, 6);
+    else return encode_msg(13, 4);
+}
+
+message_t select_func(id_t nid, out_t send_index)
+{
+    message_t res = -1;
+    if (nid == 7) res = branch_7_func(nid);
+    else if (nid == 9) res = branch_9_func(nid);
+    else if (nid == 13) res = branch_13_func(nid);
+    else res = msg_graph[nid][send_index];
+    return res;
+}
+
+</declaration>    <template>        <name x="5" y="5">Node</name>
+        <parameter>const id_t &amp;nid</parameter>
+        <declaration>clock clk;
+double duration;
+out_t send_index;
+message_t send_msg;
+out_t predecessor_count;
+out_t successor_count;
+</declaration>        <location id="id0" x="340" y="-382">            <name x="366" y="-390">Done</name>
+        </location>
+        <location id="id1" x="162" y="-118">
+            <name x="136" y="-101">Sending</name>
+            <urgent/>
+        </location>
+        <location id="id2" x="162" y="-382">
+            <urgent/>
+        </location>
+        <location id="id3" x="-59" y="-382">
+            <name x="-85" y="-416">Running</name>
+            <label kind="invariant" x="-102" y="-356">clk &lt;= duration</label>
+        </location>
+        <location id="id4" x="-357" y="-118">
+            <name x="-391" y="-101">Receiving</name>
+        </location>
+        <location id="id5" x="-357" y="-382">
+            <urgent/>
+        </location>
+        <location id="id6" x="-688" y="-382">
+            <name x="-697" y="-416">Init</name>
+            <committed/>
+        </location>
+        <init ref="id6"/>
+        <transition>
+            <source ref="id1"/>
+            <target ref="id2"/>
+            <label kind="synchronisation" x="213" y="-314">msg[send_msg]!</label>
+            <label kind="assignment" x="196" y="-186">successor_count --,
+send_index ++</label>
+            <nail x="221" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id0"/>
+            <target ref="id5"/>
+            <label kind="select" x="-280" y="-535">e : message_t</label>
+            <label kind="guard" x="-280" y="-518">e % NODE_NUM == nid</label>
+            <label kind="synchronisation" x="-280" y="-501">msg[e]?</label>
+            <label kind="assignment" x="-280" y="-467">predecessor_count = receive_count[nid] - 1,
+successor_count = send_count[nid]</label>
+            <nail x="340" y="-475"/>
+            <nail x="-357" y="-475"/>
+        </transition>
+        <transition>
+            <source ref="id4"/>
+            <target ref="id5"/>
+            <label kind="select" x="-331" y="-263">e : message_t</label>
+            <label kind="guard" x="-331" y="-246">e % NODE_NUM == nid</label>
+            <label kind="synchronisation" x="-331" y="-229">msg[e]?</label>
+            <label kind="assignment" x="-331" y="-212">predecessor_count --</label>
+            <nail x="-297" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id2"/>
+            <target ref="id0"/>
+            <label kind="guard" x="179" y="-416">successor_count == 0</label>
+            <label kind="assignment" x="221" y="-382">visit[nid] ++</label>
+        </transition>
+        <transition>
+            <source ref="id2"/>
+            <target ref="id1"/>
+            <label kind="guard" x="26" y="-254">successor_count &gt; 0</label>
+            <label kind="assignment" x="-76" y="-229">send_msg = select_func(nid, send_index)</label>
+            <nail x="102" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id3"/>
+            <target ref="id2"/>
+            <label kind="guard" x="17" y="-407">clk &gt;= duration</label>
+            <label kind="assignment" x="17" y="-382">send_index = 0,
+do_func(nid)</label>
+        </transition>
+        <transition>
+            <source ref="id5"/>
+            <target ref="id4"/>
+            <label kind="guard" x="-493" y="-297">predecessor_count &gt; 0</label>
+            <nail x="-416" y="-254"/>
+        </transition>
+        <transition>
+            <source ref="id5"/>
+            <target ref="id3"/>
+            <label kind="guard" x="-306" y="-373">predecessor_count == 0</label>
+            <label kind="assignment" x="-306" y="-348">duration = running_time(nid),
+clk = 0</label>
+        </transition>
+        <transition>
+            <source ref="id6"/>
+            <target ref="id5"/>
+            <label kind="assignment" x="-663" y="-373">predecessor_count = receive_count[nid],
+successor_count = send_count[nid]</label>
+        </transition>
+    </template>
+    <system>// Place template instantiations here.
+n0 = Node(0);
+n1 = Node(1);
+n2 = Node(2);
+n3 = Node(3);
+n4 = Node(4);
+n5 = Node(5);
+n6 = Node(6);
+n7 = Node(7);
+n8 = Node(8);
+n9 = Node(9);
+n10 = Node(10);
+n11 = Node(11);
+n12 = Node(12);
+n13 = Node(13);
+
+// List one or more processes to be composed into a system.
+system n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13;
+</system></nta>
